@@ -1,5 +1,6 @@
 $.ready(() => {
     let app = $.query('#app');
+    const topic = '1729183231';
 
     app.addEventListener('click', evt => {
         let el = evt.target;
@@ -7,7 +8,7 @@ $.ready(() => {
         if (el.matches('button[data-cmd]')) {
             Notification.requestPermission().then(permission => {
                 if (permission == 'granted') {        
-                    $.post('https://ntfy.sh/8columns', 'Just add your desired image size (width & height) after our URL, and you\'ll get a random image.', {
+                    $.post('https://ntfy.sh/' + topic, 'Just add your desired image size (width & height) after our URL, and you\'ll get a random image.', {
                         "content-type": "text/plain",
                         "Title": "Easy to use, stylish placeholders",
                         "Priority": "default",
@@ -21,11 +22,9 @@ $.ready(() => {
         }
     })
 
-    const eventSource = new EventSource('https://ntfy.sh/8columns/sse');
+    const eventSource = new EventSource('https://ntfy.sh/' + topic + '/sse');
 
-    eventSource.onmessage = evt => {
-        // console.log(evt.data);
-    
+    eventSource.onmessage = evt => {    
         if (typeof evt?.data == 'string') {
             let node = JSON.parse(evt.data);
             
@@ -36,10 +35,7 @@ $.ready(() => {
             if (node.attachment) {
                 options.image = node.attachment.url
             }
-    
-            console.log(node);
-            console.log(options);
-    
+        
             new Notification(node.title, options);
         }
     }
