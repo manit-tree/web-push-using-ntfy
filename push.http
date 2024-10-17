@@ -1,0 +1,8 @@
+POST https://ntfy.sh/8columns HTTP/1.1
+content-type: text/plain
+Title: Easy to use, stylish placeholders
+Priority: default
+Tags: incoming_envelope
+Attach: https://picsum.photos/300/200
+
+Just add your desired image size (width & height) after our URL, and you\'ll get a random image.
