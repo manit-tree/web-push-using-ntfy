@@ -1,3 +1,3 @@
-# Vanilla App Template
+# Web Push using ntfy
 
-Development Template for start working with HTML, CSS and JavaScript project
+Mini project for learning how to use Web Push with ntfy
